@@ -92,6 +92,7 @@
                 <a href="#investment" class="nav-link text-gray-600 hover:text-yellow-600">Investment</a>
                 <a href="#roadmap" class="nav-link text-gray-600 hover:text-yellow-600">Roadmap</a>
                 <a href="#team" class="nav-link text-gray-600 hover:text-yellow-600">Team</a>
+                <a href="#gallery" class="nav-link text-gray-600 hover:text-yellow-600">Gallery</a>
             </div>
         </nav>
     </header>
@@ -261,6 +262,41 @@
             </div>
         </section>
 
+        <section id="gallery" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900">On-Site Gallery</h3>
+                    <p class="mt-3 text-lg text-gray-600 max-w-3xl mx-auto">Visual documentation of our progress on the ground at the Jewel Claims, from initial exploration to sample collection.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden group">
+                        <img src="https://placehold.co/600x400/38332E/FFFFFF?text=Team+Briefing" alt="Team on-site" class="w-full h-48 object-cover group-hover:opacity-80 transition-opacity" onerror="this.onerror=null;this.src='https://placehold.co/600x400/38332E/FFFFFF?text=Image+Not+Found';">
+                        <p class="p-4 text-sm text-gray-700">Our geological team conducting a pre-survey briefing on site.</p>
+                    </div>
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden group">
+                        <img src="https://placehold.co/600x400/AA904C/FFFFFF?text=Excavator+Work" alt="Trenching with excavator" class="w-full h-48 object-cover group-hover:opacity-80 transition-opacity" onerror="this.onerror=null;this.src='https://placehold.co/600x400/AA904C/FFFFFF?text=Image+Not+Found';">
+                        <p class="p-4 text-sm text-gray-700">Heavy machinery at work during the trenching phase.</p>
+                    </div>
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden group">
+                        <img src="https://placehold.co/600x400/D4AF37/FFFFFF?text=Quartz+Vein" alt="Quartz vein sample" class="w-full h-48 object-cover group-hover:opacity-80 transition-opacity" onerror="this.onerror=null;this.src='https://placehold.co/600x400/D4AF37/FFFFFF?text=Image+Not+Found';">
+                        <p class="p-4 text-sm text-gray-700">A close-up of a promising quartz vein identified in a trench wall.</p>
+                    </div>
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden group">
+                        <img src="https://placehold.co/600x400/6B6165/FFFFFF?text=Sample+Bagging" alt="Sample bagging process" class="w-full h-48 object-cover group-hover:opacity-80 transition-opacity" onerror="this.onerror=null;this.src='https://placehold.co/600x400/6B6165/FFFFFF?text=Image+Not+Found';">
+                        <p class="p-4 text-sm text-gray-700">Systematic collection and bagging of samples for assay testing.</p>
+                    </div>
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden group">
+                        <img src="https://placehold.co/600x400/5D545E/FFFFFF?text=Core+Sample" alt="Drill core sample" class="w-full h-48 object-cover group-hover:opacity-80 transition-opacity" onerror="this.onerror=null;this.src='https://placehold.co/600x400/5D545E/FFFFFF?text=Image+Not+Found';">
+                        <p class="p-4 text-sm text-gray-700">Inspecting a recently extracted drill core sample.</p>
+                    </div>
+                    <div class="bg-white rounded-lg border border-gray-200 overflow-hidden group">
+                        <img src="https://placehold.co/600x400/4F4857/FFFFFF?text=Site+Overview" alt="Overview of the claim site" class="w-full h-48 object-cover group-hover:opacity-80 transition-opacity" onerror="this.onerror=null;this.src='https://placehold.co/600x400/4F4857/FFFFFF?text=Image+Not+Found';">
+                        <p class="p-4 text-sm text-gray-700">An overview of the terrain at the Jewel 01 claim site.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
     
     <footer class="bg-white border-t border-gray-200">
@@ -334,7 +370,7 @@
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
+                    if (entry.isInteracting) {
                         const id = entry.target.getAttribute('id');
                         navLinks.forEach(link => {
                             link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
