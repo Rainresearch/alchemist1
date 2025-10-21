@@ -146,14 +146,14 @@
                         <p class="text-sm text-gray-500">Peak assay result from trench sampling.</p>
                     </div>
                      <div class="stat-card p-6 rounded-lg text-center">
-                        <p class="text-4xl font-bold text-yellow-600">4 Tonnes</p>
-                        <p class="mt-2 text-gray-700 font-semibold">Estimated Gold</p>
-                        <p class="text-sm text-gray-500">Total estimated in-ground asset.</p>
+                        <p class="text-4xl font-bold text-yellow-600">2 Tonnes</p>
+                        <p class="mt-2 text-gray-700 font-semibold">Conservative Estimate</p>
+                        <p class="text-sm text-gray-500">Conservative in-ground asset calculation.</p>
                     </div>
                     <div class="stat-card p-6 rounded-lg text-center">
-                        <p class="text-4xl font-bold text-yellow-600">$220M</p>
+                        <p class="text-4xl font-bold text-yellow-600">$274M</p>
                         <p class="mt-2 text-gray-700 font-semibold">In-Ground Value</p>
-                        <p class="text-sm text-gray-500">Conservative asset valuation.</p>
+                        <p class="text-sm text-gray-500">Based on $137,000/kg.</p>
                     </div>
                     <div class="stat-card p-6 rounded-lg text-center">
                         <p class="text-4xl font-bold text-yellow-600">9.78 ha</p>
@@ -172,8 +172,8 @@
                 </div>
                 <div class="grid lg:grid-cols-5 gap-8 md:gap-12 items-center">
                     <div class="lg:col-span-3 bg-white p-8 rounded-lg border border-gray-200">
-                        <h4 class="text-2xl font-semibold mb-2">The Ask: $230,000</h4>
-                        <p class="text-gray-600 mb-6">To fund 5 months of critical operations as we prepare for the final validation phase: diamond core drilling.</p>
+                        <h4 class="text-2xl font-semibold mb-2">The Ask: $550,000</h4>
+                        <p class="text-gray-600 mb-6">To fund all operational costs required for the final validation phase: diamond core drilling and creation of a bankable NI 43-101 report.</p>
                         <div class="chart-container">
                             <canvas id="fundsChart"></canvas>
                         </div>
@@ -181,12 +181,20 @@
                     <div class="lg:col-span-2 space-y-6">
                         <div class="stat-card p-6 rounded-lg">
                              <p class="text-gray-500 text-sm">Projected Claim Sale Value</p>
-                            <p class="text-3xl font-bold text-gray-800">$32,000,000</p>
-                            <p class="text-gray-500 text-sm mt-1">Conservative post-drilling estimate.</p>
+                            <p class="text-3xl font-bold text-gray-800">$21,920,000</p>
+                            <p class="text-gray-500 text-sm mt-1">Based on 8% of conservative in-ground value.</p>
                         </div>
-                         <div class="bg-white p-6 rounded-lg border border-gray-200">
-                            <h5 class="text-lg font-semibold text-gray-800 mb-2">Business Model: Liquid & Transparent</h5>
-                            <p class="text-gray-600 text-sm">We offer "Digital Assets" representing direct fractional ownership in the holding company and its confirmed gold reserves. This provides liquidity, transparency, and exposure to all future discoveries.</p>
+                         <div class="bg-white p-6 rounded-lg border border-gray-200 grid grid-cols-2 gap-4">
+                            <div>
+                                <h5 class="font-semibold text-gray-800">Invest $25,000</h5>
+                                <p class="text-sm text-gray-600">For <span class="font-bold">0.45%</span> shares</p>
+                                <p class="text-xs text-gray-500 mt-1">Est. Value: $98,640</p>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-gray-800">Invest $50,000</h5>
+                                <p class="text-sm text-gray-600">For <span class="font-bold">0.9%</span> shares</p>
+                                <p class="text-xs text-gray-500 mt-1">Est. Value: $197,280</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -215,17 +223,17 @@
                         <div class="mb-8 relative timeline-item current">
                             <h4 class="text-xl font-semibold text-gray-800">Phase 3: Secure Funding</h4>
                             <p class="text-gray-500">Status: <span class="font-semibold text-yellow-600">Current Stage</span></p>
-                            <p class="mt-1 text-gray-600">Seeking $230,000 to fund 5 months of pre-drilling operations.</p>
+                            <p class="mt-1 text-gray-600">Seeking $550,000 to fund the final validation phase operations.</p>
                         </div>
                          <div class="mb-8 relative timeline-item">
-                            <h4 class="text-xl font-semibold text-gray-800">Phase 4: Diamond Core Drilling</h4>
+                            <h4 class="text-xl font-semibold text-gray-800">Phase 4: Diamond Core Drilling & NI 43-101</h4>
                             <p class="text-gray-500">Status: <span class="font-semibold text-gray-600">Upcoming</span></p>
-                            <p class="mt-1 text-gray-600">Drill 6 holes to produce a bankable, NI 43-101 compliant resource estimation.</p>
+                            <p class="mt-1 text-gray-600">Drill 6 holes to produce a bankable, NI 43-101 compliant resource estimation report.</p>
                         </div>
                          <div class="relative timeline-item">
                             <h4 class="text-xl font-semibold text-gray-800">Phase 5: Unlock Value</h4>
                             <p class="text-gray-500">Status: <span class="font-semibold text-gray-600">Upcoming</span></p>
-                            <p class="mt-1 text-gray-600">Execute a sale of the verified claim or secure financing for full-scale mining operations.</p>
+                            <p class="mt-1 text-gray-600">Execute a sale of the verified claim to a major mining company.</p>
                         </div>
                     </div>
                 </div>
@@ -265,11 +273,17 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const fundsData = {
-                labels: ['Pre-Drilling Preparations', 'Site Security', 'Staff & Operations'],
+                labels: ['Drill + Machinery', 'Geologists', 'Assay', 'Geophysicists', 'Labour', 'Mining Plan', 'EMA', 'Materials', 'Packing'],
                 datasets: [{
-                    data: [189500, 25500, 15000],
-                    backgroundColor: ['#D4AF37', '#BFA044', '#AA904C'],
-                    hoverBackgroundColor: ['#C09E2E', '#AD8F3A', '#998142'],
+                    data: [160000, 90000, 80000, 70000, 60000, 40000, 25000, 15000, 10000],
+                    backgroundColor: [
+                        '#D4AF37', '#BFA044', '#AA904C', '#958155', 
+                        '#80715D', '#6B6165', '#5D545E', '#4F4857', '#413C4F'
+                    ],
+                    hoverBackgroundColor: [
+                        '#C09E2E', '#AD8F3A', '#998142', '#81724B',
+                        '#6C6254', '#5A5255', '#4E4650', '#423C4A', '#343040'
+                    ],
                     borderColor: '#FDFBF8',
                     borderWidth: 4,
                 }]
@@ -336,3 +350,4 @@
     </script>
 </body>
 </html>
+
