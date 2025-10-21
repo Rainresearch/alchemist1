@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Gold Management | Investor Pitch Deck</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Gilded Earth -->
+    <!-- Application Structure Plan: A top-to-bottom, single-page application with a sticky navigation header. This structure allows investors to either follow a linear narrative or jump directly to sections of interest (like Financials or Roadmap). The flow is designed to build a compelling case: start with the broad market problem, introduce the elegant solution, showcase the tangible asset as proof, detail the investment opportunity, and conclude with the clear path forward. This is more intuitive and engaging than a static slide-by-slide presentation. -->
+    <!-- Visualization & Content Choices: 
+        - Problem/Solution: Presented in a two-column layout for direct comparison. Goal: Compare. Method: HTML/Tailwind grid. Interaction: None, clarity is key. Justification: Clearly contrasts the old, risky model with the new, de-risked approach.
+        - Key Asset Stats: Displayed as high-contrast "stat cards". Goal: Inform. Method: HTML/Tailwind flexbox. Interaction: None. Justification: Makes critical numbers (like 18.0 g/t) immediately scannable and memorable.
+        - Use of Funds: An interactive donut chart. Goal: Organize/Inform. Method: Chart.js Canvas. Interaction: Hover to see details of each allocation. Justification: Provides a transparent and visually appealing breakdown of how investment capital will be used, building investor confidence.
+        - Roadmap: A vertical timeline. Goal: Show Change/Process. Method: HTML/CSS with Tailwind. Interaction: The current phase is visually highlighted. Justification: Clearly communicates progress and future milestones, showing the project's momentum. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #38332E;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link.active {
+            color: #D4AF37;
+            font-weight: 600;
+        }
+        .stat-card {
+            background-color: #FFFFFF;
+            border: 1px solid #EAE5E0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #D1D5DB; 
+            border: 3px solid #FDFBF8;
+        }
+        .timeline-item.complete::before {
+            background-color: #10B981;
+        }
+        .timeline-item.current::before {
+            background-color: #D4AF37;
+        }
+        .timeline-line {
+            position: absolute;
+            left: -21px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #EAE5E0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-gray-800">Digital Gold Management</h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#opportunity" class="nav-link text-gray-600 hover:text-yellow-600">Opportunity</a>
+                <a href="#asset" class="nav-link text-gray-600 hover:text-yellow-600">The Asset</a>
+                <a href="#investment" class="nav-link text-gray-600 hover:text-yellow-600">Investment</a>
+                <a href="#roadmap" class="nav-link text-gray-600 hover:text-yellow-600">Roadmap</a>
+                <a href="#team" class="nav-link text-gray-600 hover:text-yellow-600">Team</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="bg-white py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-6xl font-bold leading-tight text-gray-900">Unlocking Tangible Gold Assets</h2>
+                <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">We de-risk gold exploration by proving in-ground assets *before* you invest, transforming a speculative venture into a transparent, high-value opportunity.</p>
+            </div>
+        </section>
+
+        <section id="opportunity" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900">A New Paradigm in Gold Investment</h3>
+                    <p class="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">We directly address the fundamental flaws of traditional exploration investment by prioritizing transparency and verifiable value.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+                    <div class="bg-white p-8 rounded-lg border border-gray-200">
+                        <h4 class="text-2xl font-semibold mb-4 text-red-700">The Problem: High Risk & Low Transparency</h4>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start"><span class="text-red-500 mr-3 mt-1">&#10007;</span> <strong>High Upfront Costs:</strong> Massive capital required before any assets are proven.</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-3 mt-1">&#10007;</span> <strong>Lack of Verifiable Data:</strong> Investors rely on opaque reports and projections.</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-3 mt-1">&#10007;</span> <strong>Illiquid Investment:</strong> Capital is locked for years with no guaranteed return.</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-3 mt-1">&#10007;</span> <strong>Operational Complexity:</strong> Significant barriers for non-expert investors.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg border border-gray-200">
+                        <h4 class="text-2xl font-semibold mb-4 text-green-700">Our Solution: De-Risked & Verified Assets</h4>
+                        <ul class="space-y-3 text-gray-600">
+                             <li class="flex items-start"><span class="text-green-500 mr-3 mt-1">&#10003;</span> <strong>Explore & Identify:</strong> Use cutting-edge tech to find high-probability sites.</li>
+                             <li class="flex items-start"><span class="text-green-500 mr-3 mt-1">&#10003;</span> <strong>Secure & Permit:</strong> Navigate all legal and regulatory hurdles.</li>
+                             <li class="flex items-start"><span class="text-green-500 mr-3 mt-1">&#10003;</span> <strong>Confirm & Verify:</strong> Prove gold in the ground through drilling and assaying.</li>
+                             <li class="flex items-start"><span class="text-green-500 mr-3 mt-1">&#10003;</span> <strong>Invest with Confidence:</strong> Only seek major capital after an asset is tangible and verified.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="asset" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Our Flagship Asset: The Jewel Claims</h3>
+                    <p class="mt-3 text-lg text-gray-600 max-w-3xl mx-auto">Located in the historically rich Shamva District of Zimbabwe, our "Jewel 01" claim is a significant, de-risked gold discovery with proven high-grade mineralization.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="stat-card p-6 rounded-lg text-center">
+                        <p class="text-4xl font-bold text-yellow-600">18.0 g/t</p>
+                        <p class="mt-2 text-gray-700 font-semibold">High-Grade Discovery</p>
+                        <p class="text-sm text-gray-500">Peak assay result from trench sampling.</p>
+                    </div>
+                     <div class="stat-card p-6 rounded-lg text-center">
+                        <p class="text-4xl font-bold text-yellow-600">4 Tonnes</p>
+                        <p class="mt-2 text-gray-700 font-semibold">Estimated Gold</p>
+                        <p class="text-sm text-gray-500">Total estimated in-ground asset.</p>
+                    </div>
+                    <div class="stat-card p-6 rounded-lg text-center">
+                        <p class="text-4xl font-bold text-yellow-600">$220M</p>
+                        <p class="mt-2 text-gray-700 font-semibold">In-Ground Value</p>
+                        <p class="text-sm text-gray-500">Conservative asset valuation.</p>
+                    </div>
+                    <div class="stat-card p-6 rounded-lg text-center">
+                        <p class="text-4xl font-bold text-yellow-600">9.78 ha</p>
+                        <p class="mt-2 text-gray-700 font-semibold">Claim Area</p>
+                        <p class="text-sm text-gray-500">In Mashonaland Central, Zimbabwe.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="investment" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900">The Investment Opportunity</h3>
+                    <p class="mt-3 text-lg text-gray-600 max-w-3xl mx-auto">We are seeking capital to advance our verified asset to the final, bankable stage, unlocking its full value for our investors through a transparent, digital ownership model.</p>
+                </div>
+                <div class="grid lg:grid-cols-5 gap-8 md:gap-12 items-center">
+                    <div class="lg:col-span-3 bg-white p-8 rounded-lg border border-gray-200">
+                        <h4 class="text-2xl font-semibold mb-2">The Ask: $230,000</h4>
+                        <p class="text-gray-600 mb-6">To fund 5 months of critical operations as we prepare for the final validation phase: diamond core drilling.</p>
+                        <div class="chart-container">
+                            <canvas id="fundsChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="stat-card p-6 rounded-lg">
+                             <p class="text-gray-500 text-sm">Projected Claim Sale Value</p>
+                            <p class="text-3xl font-bold text-gray-800">$32,000,000</p>
+                            <p class="text-gray-500 text-sm mt-1">Conservative post-drilling estimate.</p>
+                        </div>
+                         <div class="bg-white p-6 rounded-lg border border-gray-200">
+                            <h5 class="text-lg font-semibold text-gray-800 mb-2">Business Model: Liquid & Transparent</h5>
+                            <p class="text-gray-600 text-sm">We offer "Digital Assets" representing direct fractional ownership in the holding company and its confirmed gold reserves. This provides liquidity, transparency, and exposure to all future discoveries.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Our Roadmap to Success</h3>
+                    <p class="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">Our systematic approach has moved from discovery to a proven asset. The next steps are clear and designed to maximize investor return.</p>
+                </div>
+                <div class="max-w-2xl mx-auto">
+                    <div class="relative pl-8">
+                        <div class="timeline-line"></div>
+                        <div class="mb-8 relative timeline-item complete">
+                            <h4 class="text-xl font-semibold text-gray-800">Phase 1: Aeromagnetic Survey</h4>
+                            <p class="text-gray-500">Status: <span class="font-semibold text-green-600">Complete</span></p>
+                            <p class="mt-1 text-gray-600">Successfully identified geological anomalies indicative of gold deposits.</p>
+                        </div>
+                        <div class="mb-8 relative timeline-item complete">
+                            <h4 class="text-xl font-semibold text-gray-800">Phase 2: Trenching & Assaying</h4>
+                            <p class="text-gray-500">Status: <span class="font-semibold text-green-600">Complete</span></p>
+                            <p class="mt-1 text-gray-600">Confirmed high-grade gold at 18.0 g/t, verifying the asset.</p>
+                        </div>
+                        <div class="mb-8 relative timeline-item current">
+                            <h4 class="text-xl font-semibold text-gray-800">Phase 3: Secure Funding</h4>
+                            <p class="text-gray-500">Status: <span class="font-semibold text-yellow-600">Current Stage</span></p>
+                            <p class="mt-1 text-gray-600">Seeking $230,000 to fund 5 months of pre-drilling operations.</p>
+                        </div>
+                         <div class="mb-8 relative timeline-item">
+                            <h4 class="text-xl font-semibold text-gray-800">Phase 4: Diamond Core Drilling</h4>
+                            <p class="text-gray-500">Status: <span class="font-semibold text-gray-600">Upcoming</span></p>
+                            <p class="mt-1 text-gray-600">Drill 6 holes to produce a bankable, NI 43-101 compliant resource estimation.</p>
+                        </div>
+                         <div class="relative timeline-item">
+                            <h4 class="text-xl font-semibold text-gray-800">Phase 5: Unlock Value</h4>
+                            <p class="text-gray-500">Status: <span class="font-semibold text-gray-600">Upcoming</span></p>
+                            <p class="mt-1 text-gray-600">Execute a sale of the verified claim or secure financing for full-scale mining operations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="team" class="py-16 md:py-24">
+            <div class="container mx-auto px-6 text-center">
+                 <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Led by an Experienced Team</h3>
+                 <p class="mt-3 text-lg text-gray-600 max-w-3xl mx-auto">Our leadership comprises seasoned professionals with decades of combined experience in geology, mining operations, and finance, ensuring expert execution at every stage.</p>
+                 <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                     <div class="bg-white p-6 rounded-lg border border-gray-200">
+                         <h4 class="text-xl font-semibold text-gray-800">Geology & Exploration</h4>
+                         <p class="mt-2 text-gray-600">Experts in identifying and verifying mineral deposits.</p>
+                     </div>
+                     <div class="bg-white p-6 rounded-lg border border-gray-200">
+                         <h4 class="text-xl font-semibold text-gray-800">Mining Operations</h4>
+                         <p class="mt-2 text-gray-600">Proven ability to manage complex logistics and regulations.</p>
+                     </div>
+                     <div class="bg-white p-6 rounded-lg border border-gray-200">
+                         <h4 class="text-xl font-semibold text-gray-800">Finance & Capital Markets</h4>
+                         <p class="mt-2 text-gray-600">Strong track record in structuring investments and maximizing returns.</p>
+                     </div>
+                 </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-white border-t border-gray-200">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-600">
+            <p>&copy; 2025 Digital Gold Management. All Rights Reserved.</p>
+            <p class="text-sm mt-2">This is not an offer to sell securities. Investments are open to accredited investors only.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const fundsData = {
+                labels: ['Pre-Drilling Preparations', 'Site Security', 'Staff & Operations'],
+                datasets: [{
+                    data: [189500, 25500, 15000],
+                    backgroundColor: ['#D4AF37', '#BFA044', '#AA904C'],
+                    hoverBackgroundColor: ['#C09E2E', '#AD8F3A', '#998142'],
+                    borderColor: '#FDFBF8',
+                    borderWidth: 4,
+                }]
+            };
+
+            const fundsConfig = {
+                type: 'doughnut',
+                data: fundsData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                font: {
+                                    family: 'Inter, sans-serif'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(context.parsed);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '60%'
+                }
+            };
+            
+            const fundsCtx = document.getElementById('fundsChart')?.getContext('2d');
+            if(fundsCtx) {
+                new Chart(fundsCtx, fundsConfig);
+            }
+
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a.nav-link');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                        });
+                    }
+                });
+            }, { rootMargin: '-30% 0px -70% 0px' });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
